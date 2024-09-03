@@ -1,9 +1,9 @@
 import { apiClient } from "../shared";
 
 export async function fetchFrontPage(path: String, version: String) {
-    try {
-        return await apiClient.catalogueApi(
-            `
+  try {
+    return await apiClient.catalogueApi(
+      `
                #graphql
                 query($path: String!, $version: VersionLabel) {
                     catalogue(path: $path, language: "en", version: $version) {
@@ -72,7 +72,7 @@ export async function fetchFrontPage(path: String, version: String) {
                         }
                       }
                     }
-                    donuts: catalogue(path: "/shop", language: "en") {
+                    donuts: catalogue(path: "/shop/", language: "en") {
                       children {
                         id
                         topics {
@@ -111,14 +111,14 @@ export async function fetchFrontPage(path: String, version: String) {
                       }
                     }
                   }
-                  
+
             `,
-            {
-                path,
-                version,
-            }
-        );
-    } catch (error) {
-        throw error;
-    }
+      {
+        path,
+        version,
+      },
+    );
+  } catch (error) {
+    throw error;
+  }
 }
